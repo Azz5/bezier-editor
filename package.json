@@ -11,13 +11,15 @@
     "predeploy": "bun run build",
     "deploy": "gh-pages -d dist"
   },
-  "homepage": "https://azz5.github.io/my-editor",
+  "homepage": "https://azz5.github.io/bezier-editor",
   "dependencies": {
+    "p5": "^2.0.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.22.0",
+    "@types/p5": "^1.7.6",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "@vitejs/plugin-react": "^4.3.4",
