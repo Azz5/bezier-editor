@@ -1,14 +1,11 @@
 /* Make sure the root elements span the full viewport height */
-html, body, #root {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
+
+
   
   /* Your app container */
   .app {
     display: flex;
-    flex-direction: column;      /* stack children vertically */
+    flex-direction: column;
     align-items: center;         /* center horizontally */
     justify-content: center;     /* center vertically */
     font-family: Arial, sans-serif;
@@ -16,6 +13,18 @@ html, body, #root {
     /* Use the full viewport height */
     min-height: 100vh;
     width: 100%;
+    
+    /* Remove that large padding-left unless you really need it */
+    padding: 0;
+  }
+  .editor-container {
+    display: flex;
+    
+    align-items: center;         /* center horizontally */
+    justify-content: center;     /* center vertically */
+    font-family: Arial, sans-serif;
+  
+    /* Use the full viewport height */
     
     /* Remove that large padding-left unless you really need it */
     padding: 0;
