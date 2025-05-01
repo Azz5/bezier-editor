@@ -1,54 +1,88 @@
-# React + TypeScript + Vite
+# n-Degree Bézier Curve Editor
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React + Vite application for interactively creating, editing, and visualizing n-degree Bézier curves with a P5.js canvas.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Add / Remove Curves**  
+  Create multiple Bézier curves; each curve has its own unique ID.
 
-## Expanding the ESLint configuration
+- **n-Point Control**  
+  Dynamically add or remove control points in a modal form.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Drag & Snap**  
+  Drag control points around on the canvas; points snap to nearby points across curves for precise alignment.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- **Resizable Canvas Container**  
+  The editor sits inside a CSS-resizable `<div>`—drag its corner to adjust the drawing area.
+
+- **Lightweight p5 Integration**  
+  Uses the ES module build of p5.js (`p5.esm.js`) for smaller bundle size and better tree-shaking.
+
+## Screenshots
+
+<div align="center">
+  <img src="screenshots/editor.png" alt="Editor with multiple curves" width="600" />
+  <p><em>Interactive Bézier curve editor</em></p>
+</div>
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js ≥ 16  
+- npm (or Yarn/Bun)
+
+### Install
+
+1. Clone this repo:
+   ```bash
+   git clone https://github.com/your-username/bezier-curve-editor.git
+   cd bezier-curve-editor
+   ```
+
+2. Install dependencies:
+  ```bash
+  npm install
+  # or
+  yarn
+  # or with Bun
+  bun install
+  ```
+
+### Run Locally
+
+```bash
+npm run dev
+# or
+yarn dev
+# or
+bun run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+### Build & Deploy
+```bash
+npm run build
+# or
+yarn build
+# or
+bun run build
 ```
+
+The optimized production output will appear in the dist/ folder. Serve it on any static host (Netlify, Vercel, GitHub Pages, etc.).
+
+### Project Structure
+
+```
+src/
+├─ components/
+│  └─ P5BezierEditor.tsx      # The main p5.js canvas editor
+├─ styles/
+│  └─ App.css                 # Global styles
+├─ App.tsx                    # Main layout & curve-list + modal form
+├─ main.tsx                   # React entrypoint
+└─ vite.config.ts             # Vite configuration & p5 alias
+```
+
+
+
