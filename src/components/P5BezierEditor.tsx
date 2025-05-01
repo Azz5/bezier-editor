@@ -36,7 +36,7 @@ const P5BezierEditor: React.FC<Props> = ({ curves, onCurveUpdate }) => {
 
     const sketch = (p: p5) => {
       p.setup = () => {
-        p.createCanvas(800, 400).parent(parent);
+        p.createCanvas(1000, 600).parent(parent);
       };
 
       p.draw = () => {
@@ -93,20 +93,31 @@ const P5BezierEditor: React.FC<Props> = ({ curves, onCurveUpdate }) => {
           const target = curvesRef.current.find(c => c.id === curveId);
           if (!target) return;
           // constrain to canvas bounds
-          const x = Math.min(Math.max(p.mouseX, 0), p.width);
-          const y = Math.min(Math.max(p.mouseY, 0), p.height);
+          let x = Math.min(Math.max(p.mouseX, 0), p.width);
+          let y = Math.min(Math.max(p.mouseY, 0), p.height);
+          // snap to any control point across all curves if within threshold
+          const threshold = 6;
+          curvesRef.current.forEach(curveSnap => {
+            curveSnap.controlPoints.forEach((ptSnap, idxSnap) => {
+              if (curveSnap.id !== curveId || idxSnap !== ptIdx) {
+                const dSnap = p.dist(x, y, ptSnap.x, ptSnap.y);
+                if (dSnap < threshold) {
+                  x = ptSnap.x;
+                  y = ptSnap.y;
+                }
+              }
+            });
+          });
           const updated = target.controlPoints.map((pt, i) =>
             i === ptIdx ? { x, y } : { ...pt }
           );
           updateRef.current(curveId, updated);
         }
       };
-
-      p.mouseReleased = () => { dragging.current = null; };
+      p.mouseReleased = () => { dragging.current=null; };
     };
-
     const instance = new p5(sketch);
-    return () => instance.remove();
+    return ()=>instance.remove();
   }, []);
 
   return <div ref={containerRef} />;
