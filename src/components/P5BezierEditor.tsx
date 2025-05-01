@@ -92,8 +92,11 @@ const P5BezierEditor: React.FC<Props> = ({ curves, onCurveUpdate }) => {
           const { curveId, ptIdx } = dragging.current;
           const target = curvesRef.current.find(c => c.id === curveId);
           if (!target) return;
+          // constrain to canvas bounds
+          const x = Math.min(Math.max(p.mouseX, 0), p.width);
+          const y = Math.min(Math.max(p.mouseY, 0), p.height);
           const updated = target.controlPoints.map((pt, i) =>
-            i === ptIdx ? { x: p.mouseX, y: p.mouseY } : { ...pt }
+            i === ptIdx ? { x, y } : { ...pt }
           );
           updateRef.current(curveId, updated);
         }

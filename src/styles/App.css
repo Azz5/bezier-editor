@@ -29,4 +29,16 @@
     /* Remove that large padding-left unless you really need it */
     padding: 0;
   }
+
+  .addCurve {
+    margin-bottom: 1%;
+  }
   
+  .modalActions {
+    display: flex;
+    justify-content: center;
+    padding: 2px;
+  }
+  button {
+    margin-right: 5px;
+  }

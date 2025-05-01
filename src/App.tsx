@@ -36,8 +36,8 @@ const App: React.FC = () => {
 
   return (
     <div id="root" className="app">
-      <h1>n-Degree Bézier Curve Editor</h1>
-      <button onClick={openNew}>Add Curve</button>
+      <h1>Bézier Curve Editor</h1>
+      <button onClick={openNew} className='addCurve'>Add Curve</button>
       <P5BezierEditor curves={curves} onCurveUpdate={updateCurvePoints}/>
       <div className="curveHolder">
         {curves.map(curve=>(
