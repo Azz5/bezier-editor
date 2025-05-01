@@ -21,10 +21,8 @@ A React + Vite application for interactively creating, editing, and visualizing 
 
 ## Screenshots
 
-<div align="center">
-  <img src="screenshots/editor.png" alt="Editor with multiple curves" width="600" />
-  <p><em>Interactive Bézier curve editor</em></p>
-</div>
+![image](https://github.com/user-attachments/assets/18cc0907-e24e-4d67-a196-907ec61ca880)
+
 
 ## Getting Started
 
